@@ -5,8 +5,8 @@ const endGameText = document.querySelector(".end-game-text");
 const playAgainButton = document.querySelector(".play-again");
 
 const totalCells = 100;
-const totalBombs = 25;
-const maxScore = 10;
+const totalBombs = 15;
+const maxScore = totalCells - totalBombs;
 const bombsList = [];
 
 let score = 0;
@@ -19,6 +19,21 @@ function updateScore() {
     endGame(true);
   }
 }
+
+function revealAllBombs() {
+  //Get all of the cells from the page
+  const cells = document.querySelector(".cell");
+
+  for (let i = 1; i <= cells.length; i++) {
+    const cell = cells[i - 1];
+
+    //if this cell is in the bombsList array, add the cell-bomb cell css class to it
+    if (bombsList.includes(i)) {
+      cell.classList.add("cell-bomb");
+    }
+  }
+}
+
 //cell = <div></div>
 const cell = document.createElement("div");
 cell.classList.add("cell");
